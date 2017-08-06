@@ -16,8 +16,7 @@ public class AddressBook {
 		this.id = id;
 	}
 	
-	public void addContact(String name, String phoneNumber) {
-		Contact contact = new Contact(name, phoneNumber);
+	public void addContact(Contact contact) {
 		contacts.add(contact);
 	}
 	
@@ -33,19 +32,23 @@ public class AddressBook {
 	}
 	
 	public void removeContactByName(String name) {
+		List<Contact> removed = new ArrayList<Contact>();
 		for (Contact c : contacts){
 			if (Objects.equals(name, c.getName())) {
-				contacts.remove(c);
+				removed.add(c);
 			}
 		}
+		contacts.removeAll(removed);
 	}
 	
 	public void removeContactByPhoneNumber(String phoneNumber) {
+		List<Contact> removed = new ArrayList<Contact>();
 		for (Contact c : contacts){
 			if (Objects.equals(phoneNumber, c.getPhoneNumber())) {
-				contacts.remove(c);
+				removed.add(c);
 			}
 		}
+		contacts.removeAll(removed);
 	}
 	
 	public String getId() {

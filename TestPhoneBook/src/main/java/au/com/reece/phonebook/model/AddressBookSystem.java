@@ -16,11 +16,13 @@ public class AddressBookSystem {
 	}
 	
 	public void removeAddressBook(String id) {
+		List<AddressBook> removed = new ArrayList<AddressBook>();
 		for (AddressBook book : books){
 			if (Objects.equals(id, book.getId())) {
-				books.remove(book);
+				removed.add(book);
 			}
 		}
+		books.removeAll(removed);
 	}
 	
 	public List<AddressBook> getBooks() {
