@@ -34,16 +34,10 @@ public class AddressBookManager {
 		Map<String, Contact> uniqueMap = new HashMap<String, Contact>();
 		for (AddressBook ab : system.getBooks()) {
 			for (Contact ct : ab.getContacts()) { 
-				if (!uniqueMap.containsKey(ct.getName())) {
-					uniqueMap.put(ct.getName(), ct);
-				} else {
-					//person with the same name already exist in the system
-					//check if phone number is the same
-					String phone = uniqueMap.get(ct.getName()).getPhoneNumber();
-					if (!Objects.equals(phone, ct.getPhoneNumber())) {
-						uniqueMap.put(ct.getName(), ct);
-					}
-				}
+				String key = ct.getName() +ct.getPhoneNumber();
+				if (!uniqueMap.containsKey(key)) {
+					uniqueMap.put(key, ct);
+				} 
 			}
 		}
 		return uniqueMap.values();
